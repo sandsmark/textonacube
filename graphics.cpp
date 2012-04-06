@@ -33,6 +33,8 @@ float Graphics::m_angle = 0;
 float Graphics::m_angleSpeed = 1;
 float Graphics::m_scale = 0;
 int Graphics::m_angleSpin[3] = { 1, 1, 1 };
+int Graphics::sceneOffset = 0;
+int Graphics::outroOffset = 0;
 C3dsParser* Graphics::m_parser;
 vector<GLuint> Graphics::m_callLists;
 suseconds_t Graphics::m_lastUpdate;
@@ -55,8 +57,17 @@ Graphics::Graphics(int argc, char **argv)
     glutReshapeFunc(&reshape);
     glEnable(GL_DEPTH_TEST);
 
-    m_parser = new C3dsParser(FILENAME);
-    compileObject();
+	int offset;
+    m_parser = new C3dsParser("intro.3ds");
+    sceneOffset = compileObject(0);
+	printf("Sceneoffset %i", sceneOffset);
+	delete m_parser;
+    m_parser = new C3dsParser("del-fin.3ds");
+    outroOffset = compileObject(sceneOffset);
+	delete m_parser;
+    m_parser = new C3dsParser("outro.3ds");
+    compileObject(outroOffset);
+
     GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1.0 };
     GLfloat mat_shininess[] = { 0.1 };
     glClearColor (0.0, 0.0, 0.0, 0.0);
@@ -116,13 +127,15 @@ void Graphics::display(void) {
     glScalef(m_scale+1, m_scale+1, m_scale+1);
 
 
-    for (int i=0; i<m_callLists.size(); i++)
+    //for (int i=sceneOffset; i<outroOffset; i++)
+    //for (int i=outroOffset; i<m_callLists.size(); i++)
+    for (int i=0; i<sceneOffset; i++)
        glCallList(m_callLists[i]);
 
     glutSwapBuffers();
 }
 
-void Graphics::compileObject(){
+int Graphics::compileObject(int offset){
     string currentMesh, currentMaterial, mat;
     uint16_t numFaces;
     map<string, face*>    faces;
@@ -203,7 +216,9 @@ void Graphics::compileObject(){
     GLfloat color[3];
 
     GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 0.0 };
+	int i=0;
     for (map<string, vector3*>::iterator it = vertices.begin(); it != vertices.end(); it++) {
+		i++;
         list = glGenLists(1);
         glNewList(list, GL_COMPILE);
         m_callLists.push_back(list);
@@ -226,6 +241,7 @@ void Graphics::compileObject(){
         }
         glEndList();
     }
+	return i;
 }
 
 void Graphics::reshape(int w, int h) {

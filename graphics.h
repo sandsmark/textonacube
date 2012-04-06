@@ -20,7 +20,6 @@
 #ifndef GRAPHICS_H
 #define GRAPHICS_H
 
-#define FILENAME "del-fin.3ds"
 #include "C3dsParser.h"
 #include "sound.h"
 #include <stdint.h>
@@ -39,9 +38,12 @@ private:
     static void drawCube(float width, float height, float depth);
     static void drawScene();
     static void keydown(unsigned char key, int x, int y);
-    static void compileObject();
+    static int compileObject(int offset);
     static vector<GLuint> m_callLists;
-    
+	static int sceneOffset;
+	static int outroOffset;
+
+
     static C3dsParser* m_parser;
 
     static float m_angle;
