@@ -1,4 +1,4 @@
-OBJS = C3dsParser.o graphics.o sound.o main.o fht.o
+OBJS = C3dsParser.o graphics.o sound.o main.o fht.o intro.o scene.o outro.o
 CC = g++
 CFLAGS =-c -g -std=gnu++0x
 LFLAGS =
@@ -24,6 +24,15 @@ main.o : main.cpp graphics.h
 
 fht.o : fht.cpp fht.h
 	$(CC) $(CFLAGS) -o $@ fht.cpp
+
+scene.o : scene.cpp scene.h
+	$(CC) $(CFLAGS) -o $@ scene.cpp
+
+intro.o : intro.cpp intro.h
+	$(CC) $(CFLAGS) -o $@ intro.cpp
+
+outro.o : outro.cpp outro.h
+	$(CC) $(CFLAGS) -o $@ outro.cpp
 
 .PHONY :  clean
 
