@@ -37,10 +37,15 @@ int Graphics::outroOffset = 0;
 C3dsParser* Graphics::m_parser;
 vector<GLuint> Graphics::m_callLists;
 suseconds_t Graphics::m_lastUpdate;
+suseconds_t Graphics::m_started;
 Sound Graphics::m_sound("default");
 
 Graphics::Graphics(int argc, char **argv)
 {
+    struct timeval now;
+    gettimeofday(&now, NULL);
+    m_started = (now.tv_sec * 1000000) + now.tv_usec;
+
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
     glutCreateWindow(".text on a box");
@@ -107,14 +112,18 @@ void Graphics::display(void) {
     struct timeval now;
     gettimeofday(&now, NULL);
     suseconds_t cur = (now.tv_sec * 1000000) + now.tv_usec;
+    cur -= m_started;
     suseconds_t diff = cur - m_lastUpdate;
     m_lastUpdate = cur;
 
-    if (cur < 15000) {
+    if (cur < 150000) {
+        printf("displaying intro (%d)\n", cur);
         introDisplay(cur, diff);
-    } else if (cur > 30000 && cur < 60000) {
+    } else if (cur > 300000 && cur < 600000) {
+        printf("displaying scene\n");
         sceneDisplay(cur, diff);
     } else {
+        printf("displaying outro\n");
         outroDisplay(cur, diff);
     }
 

@@ -57,6 +57,7 @@ private:
     
     static Sound m_sound;
     static suseconds_t m_lastUpdate;
+    static suseconds_t m_started;
 };
 
 #endif//GRAPHICS_H
