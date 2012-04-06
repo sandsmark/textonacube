@@ -20,7 +20,7 @@
 #ifndef GRAPHICS_H
 #define GRAPHICS_H
 
-#define FILENAME "cube.3ds"
+#define FILENAME "del-fin.3ds"
 #include "C3dsParser.h"
 #include "sound.h"
 #include <stdint.h>
