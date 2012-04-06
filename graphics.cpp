@@ -84,7 +84,7 @@ Graphics::Graphics(int argc, char **argv)
     glEnable(GL_LIGHT0);
     glEnable(GL_DEPTH_TEST);
 
-//    glutFullScreen();
+    glutFullScreen();
     m_sound.play();
 
     glutMainLoop();
