@@ -122,21 +122,21 @@ void Graphics::display(void) {
         outroDisplay(cur, diff);
     }
 
-    int bass = m_sound.getBass();
-    m_angleSpeed += bass;
-    m_angleSpeed /= 1.05;
-    if (m_angleSpeed > 1) m_angleSpeed = 1;
-    m_angle += diff*(m_angleSpeed+1) / 5000;
-    if (m_angle > 360) m_angle = -360;
-    glRotatef(m_angle/2, 1, m_angleSpeed, m_scale);
+    //int bass = m_sound.getBass();
+    //m_angleSpeed += bass;
+    //m_angleSpeed /= 1.05;
+    //if (m_angleSpeed > 1) m_angleSpeed = 1;
+    //m_angle += diff*(m_angleSpeed+1) / 5000;
+    //if (m_angle > 360) m_angle = -360;
+    //glRotatef(m_angle/2, 1, m_angleSpeed, m_scale);
 
-    if (bass > 85) {
-        m_scale += bass;
-    }
+    //if (bass > 85) {
+    //    m_scale += bass;
+    //}
 
-    m_scale /= 1.1;
-    if (m_scale > 1) m_scale = 1;
-    glScalef(m_scale+1, m_scale+1, m_scale+1);
+    //m_scale /= 1.1;
+    //if (m_scale > 1) m_scale = 1;
+    //glScalef(m_scale+1, m_scale+1, m_scale+1);
 
 
     //for (int i=sceneOffset; i<outroOffset; i++)
