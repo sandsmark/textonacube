@@ -1,4 +1,6 @@
-void sceneDisplay(suseconds_t cur, suseconds_t diff)
+#include "graphics.h"
+
+void Graphics::sceneDisplay(suseconds_t cur, suseconds_t diff)
 {
     int bass = m_sound.getBass();
     m_angleSpeed += bass;

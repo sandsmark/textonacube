@@ -25,6 +25,7 @@
 #include <stdint.h>
 #include <vector>
 #include <GL/gl.h>
+#include <GL/glut.h>
 
 class Sound;
 
@@ -43,6 +44,9 @@ private:
 	static int sceneOffset;
 	static int outroOffset;
 
+    static void sceneDisplay(suseconds_t cur, suseconds_t diff);
+    static void introDisplay(suseconds_t cur, suseconds_t diff);
+    static void outroDisplay(suseconds_t cur, suseconds_t diff);
 
     static C3dsParser* m_parser;
 
@@ -50,7 +54,7 @@ private:
     static float m_angleSpeed;
     static float m_scale;
     static int m_angleSpin[3];
-
+    
     static Sound m_sound;
     static suseconds_t m_lastUpdate;
 };

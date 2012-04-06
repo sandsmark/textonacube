@@ -20,16 +20,11 @@
 #include "graphics.h"
 #include "C3dsParser.h"
 #include "chunks.def"
-#include <GL/glut.h>
 #include <assert.h>
 #include <iostream>
 #include <sys/time.h>
 #include <math.h>
 #include <map>
-
-#include "intro.h"
-#include "scene.h"
-#include "outro.h"
 
 
 //fugly

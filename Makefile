@@ -25,13 +25,13 @@ main.o : main.cpp graphics.h
 fht.o : fht.cpp fht.h
 	$(CC) $(CFLAGS) -o $@ fht.cpp
 
-scene.o : scene.cpp scene.h
+scene.o : scene.cpp
 	$(CC) $(CFLAGS) -o $@ scene.cpp
 
-intro.o : intro.cpp intro.h
+intro.o : intro.cpp
 	$(CC) $(CFLAGS) -o $@ intro.cpp
 
-outro.o : outro.cpp outro.h
+outro.o : outro.cpp
 	$(CC) $(CFLAGS) -o $@ outro.cpp
 
 .PHONY :  clean
