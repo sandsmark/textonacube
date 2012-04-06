@@ -1,7 +1,8 @@
+#include <iostream>
 #include "C3dsParser.h"
 
 C3dsParser::C3dsParser(string filename){
-
+    std::cout << "parsing file " << filename << std::endl;
 	m_currentHeader.length = NULL;
 	m_currentHeader.chunkId = NULL;
 	m_file = fopen(filename.c_str(), "rb");	
