@@ -5,7 +5,7 @@ void Graphics::outroDisplay(suseconds_t cur, suseconds_t diff) {
                0, 0, 0,  // Focus
                0.0,  1.0,  0.0); // Up
 
-    for (int i=0; i<sceneOffset; i++)
+    for (int i=outroOffset; i<m_callLists.size(); i++)
        glCallList(m_callLists[i]);
 
 	return;

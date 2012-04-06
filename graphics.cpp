@@ -115,10 +115,12 @@ void Graphics::display(void) {
 
     if (cur < 10000000) {
         introDisplay(cur, diff);
-    } else if (cur < 60000000) {
+    } else if (cur < 50000000) {
         sceneDisplay(cur, diff);
-    } else {
+    } else if (cur < 60000000) {
         outroDisplay(cur, diff);
+    } else {
+        exit(0);
     }
 
     glutSwapBuffers();
