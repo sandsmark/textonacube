@@ -32,7 +32,7 @@
 float Graphics::m_angle = 0;
 float Graphics::m_angleSpeed = 1;
 float Graphics::m_scale = 0;
-int Graphics::m_angleSpin[3];
+int Graphics::m_angleSpin[3] = { 1, 1, 1 };
 C3dsParser* Graphics::m_parser;
 vector<GLuint> Graphics::m_callLists;
 suseconds_t Graphics::m_lastUpdate;
@@ -69,9 +69,8 @@ Graphics::Graphics(int argc, char **argv)
     glEnable(GL_LIGHT0);
     glEnable(GL_DEPTH_TEST);
 
-    m_angleSpin = { 1, 1, 1 };
-
 //    glutFullScreen();
+    m_sound.play();
 
     glutMainLoop();
 }
@@ -108,7 +107,7 @@ void Graphics::display(void) {
     if (m_angle > 360) m_angle = -360;
     glRotatef(m_angle/2, 1, m_angleSpeed, m_scale);
 
-    if (bass > 7) {
+    if (bass > 85) {
         m_scale += bass;
     }
 

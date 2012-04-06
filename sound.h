@@ -21,35 +21,40 @@
 
 #include <pthread.h>
 #include <alsa/asoundlib.h>
+#include <vorbis/vorbisfile.h>
+#include <math.h>
 
 #include "fht.h"
 
+#define BUFEXP 4
+#define BUFSIZE (int)exp2(BUFEXP)
 
 /**
- * Class providing sound input and transforms to the frequency domain.
+ * Class providing sound output
  */
 
 class Sound {
 public:
     Sound(const char *device);
     ~Sound();
+    void play();
+    void pause();
+
     int getBass();
 
 private:
     static void *startLoop(void *);
     void mainloop();
 
-    int16_t *m_samples;
-    float *m_history;
-    pthread_mutex_t *m_mutex;
-    pthread_t *m_thread;
-    FHT m_fht;
-
     bool m_stopping;
-
-    snd_pcm_t *m_captureHandle;
     int m_err;
-
+    FHT m_fht;
+    uint16_t *m_samples;
+    snd_pcm_t *m_playbackHandle;
+    float *m_history;
+    OggVorbis_File *m_vorbisfile;
+    pthread_t *m_thread;
+    pthread_mutex_t *m_mutex;
 };
 
 #endif //SOUND_H
