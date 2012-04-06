@@ -113,7 +113,6 @@ void Graphics::display(void) {
     suseconds_t diff = cur - m_lastUpdate;
     m_lastUpdate = cur;
 
-        outroDisplay(cur, diff);    glutSwapBuffers();   return;
     if (cur < 10000000) {
         introDisplay(cur, diff);
     } else if (cur < 50000000) {
