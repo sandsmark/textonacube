@@ -174,7 +174,6 @@ int Sound::getBass()
     m_fht.logSpectrum(buffer, input);
 //    m_fht.scale(buffer, 1.0/20);
 
-    printf("\n");
     for (int i=0; i<BUFSIZE; i++) {
  //       printf("%f\n", input[i]);
     }
