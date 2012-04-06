@@ -2,7 +2,7 @@
 
 void Graphics::sceneDisplay(suseconds_t cur, suseconds_t diff)
 {
-    gluLookAt(-5,  5, 5, // Eye
+    gluLookAt(-50,  5, 5, // Eye
                0, 0, 0,  // Focus
                0.0,  1.0,  0.0); // Up
     int bass = m_sound.getBass();
