@@ -10,8 +10,9 @@ void Graphics::outroDisplay(suseconds_t cur, suseconds_t diff) {
     m_angleSpeed /= 1.05;
     if (m_angleSpeed > 1) m_angleSpeed = 1;
     m_angle += diff*(m_angleSpeed+1) / 5000;
-    if (m_angle > 360) m_angle = -360;
-    glRotatef(m_angle/2, 1, 1, 1);
+    //if (m_angle > 360) m_angle = -360;
+    glRotatef(m_angle/2, 1, 0, 0);
+    glRotatef(m_angle/5, 0, 1, 1);
 
     if (bass > 85) {
         m_scale += bass;
