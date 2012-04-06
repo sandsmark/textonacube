@@ -117,9 +117,9 @@ void Graphics::display(void) {
         introDisplay(cur, diff);
     } else if (cur < 50000000) {
         sceneDisplay(cur, diff);
-    } else if (cur < 60000000) {
+    } else if (cur < 41487691) {
         outroDisplay(cur, diff);
-    } else {
+    } else 
         exit(0);
     }
 
