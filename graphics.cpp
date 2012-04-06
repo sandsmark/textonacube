@@ -86,6 +86,7 @@ Graphics::Graphics(int argc, char **argv)
 }
 
 void Graphics::keydown(unsigned char key, int x, int y) {
+	printf("Time: %i\n", m_lastUpdate);
     switch (key) {
     case '\033': // Escape
         exit(0);
