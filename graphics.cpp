@@ -27,6 +27,10 @@
 #include <math.h>
 #include <map>
 
+#include "intro.h"
+#include "scene.h"
+#include "outro.h"
+
 
 //fugly
 float Graphics::m_angle = 0;
@@ -44,7 +48,7 @@ Graphics::Graphics(int argc, char **argv)
 {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
-    glutCreateWindow("iTK - DG - FK");
+    glutCreateWindow(".text on a box");
 
     glClearColor(0, 0, 0, 0); 
 
@@ -103,7 +107,6 @@ void Graphics::display(void) {
     gluLookAt(-5,  5, 5, // Eye
                0, 0, 0,  // Focus
                0.0,  1.0,  0.0); // Up
-    int bass = m_sound.getBass();
 
     struct timeval now;
     gettimeofday(&now, NULL);
@@ -111,6 +114,15 @@ void Graphics::display(void) {
     suseconds_t diff = cur - m_lastUpdate;
     m_lastUpdate = cur;
 
+    if (cur < 15) {
+        introDisplay(cur, diff);
+    } else if (cur > 30 && cur < 60) {
+        sceneDisplay(cur, diff);
+    } else {
+        outroDisplay(cur, diff);
+    }
+
+    int bass = m_sound.getBass();
     m_angleSpeed += bass;
     m_angleSpeed /= 1.05;
     if (m_angleSpeed > 1) m_angleSpeed = 1;
