@@ -105,9 +105,6 @@ void Graphics::keydown(unsigned char key, int x, int y) {
 void Graphics::display(void) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
-    gluLookAt(-5,  5, 5, // Eye
-               0, 0, 0,  // Focus
-               0.0,  1.0,  0.0); // Up
 
     struct timeval now;
     gettimeofday(&now, NULL);
