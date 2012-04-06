@@ -116,14 +116,11 @@ void Graphics::display(void) {
     suseconds_t diff = cur - m_lastUpdate;
     m_lastUpdate = cur;
 
-    if (cur < 150000) {
-        printf("displaying intro (%d)\n", cur);
+    if (cur < 10000000) {
         introDisplay(cur, diff);
-    } else if (cur > 300000 && cur < 600000) {
-        printf("displaying scene\n");
+    } else if (cur > 20000000 && cur < 60000000) {
         sceneDisplay(cur, diff);
     } else {
-        printf("displaying outro\n");
         outroDisplay(cur, diff);
     }
 
