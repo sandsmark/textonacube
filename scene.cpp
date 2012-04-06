@@ -2,6 +2,9 @@
 
 void Graphics::sceneDisplay(suseconds_t cur, suseconds_t diff)
 {
+    gluLookAt(-5,  5, 5, // Eye
+               0, 0, 0,  // Focus
+               0.0,  1.0,  0.0); // Up
     int bass = m_sound.getBass();
     m_angleSpeed += bass;
     m_angleSpeed /= 1.05;
@@ -21,6 +24,6 @@ void Graphics::sceneDisplay(suseconds_t cur, suseconds_t diff)
 
     //for (int i=sceneOffset; i<outroOffset; i++)
     //for (int i=outroOffset; i<m_callLists.size(); i++)
-    for (int i=0; i<sceneOffset; i++)
+    for (int i=sceneOffset; i<outroOffset; i++)
        glCallList(m_callLists[i]);
 }
