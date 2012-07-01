@@ -25,6 +25,7 @@
 #include <sys/time.h>
 #include <math.h>
 #include <map>
+#include <GL/freeglut.h>
 
 
 //fugly
@@ -64,7 +65,7 @@ Graphics::Graphics(int argc, char **argv)
 	int offset;
     m_parser = new C3dsParser("intro.3ds");
     sceneOffset = compileObject(0);
-	printf("Sceneoffset %i", sceneOffset);
+	printf("Sceneoffset %i\n", sceneOffset);
 	delete m_parser;
     m_parser = new C3dsParser("del-fin.3ds");
     outroOffset = compileObject(sceneOffset);
@@ -119,7 +120,7 @@ void Graphics::display(void) {
         sceneDisplay(cur, diff);
     } else if (cur < 41487691) {
         outroDisplay(cur, diff);
-    } else 
+    } else {
         exit(0);
     }
 
