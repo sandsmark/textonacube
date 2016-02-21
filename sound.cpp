@@ -19,6 +19,8 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
+#include <iostream>
+#include <errno.h>
 
 #include "sound.h"
 
@@ -76,7 +78,8 @@ Sound::Sound (const char *device) :
         exit (1);
     }
 
-    if ((m_err = snd_pcm_hw_params_set_rate_near (m_playbackHandle, hw_params, &rate, 0)) < 0) {
+    int dir;
+    if ((m_err = snd_pcm_hw_params_set_rate_near (m_playbackHandle, hw_params, &rate, &dir)) < 0) {
         fprintf (stderr, "cannot set sample rate (%s)\n",
              snd_strerror (m_err));
         exit (1);
@@ -87,6 +90,11 @@ Sound::Sound (const char *device) :
              snd_strerror (m_err));
         exit (1);
     }
+
+    snd_pcm_uframes_t frames = 32;
+    snd_pcm_hw_params_set_period_size_near(m_playbackHandle,
+            hw_params, &frames, &dir);
+
 
     if ((m_err = snd_pcm_hw_params (m_playbackHandle, hw_params)) < 0) {
         fprintf (stderr, "cannot set parameters (%s)\n",

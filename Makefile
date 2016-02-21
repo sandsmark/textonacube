@@ -2,7 +2,7 @@ OBJS = C3dsParser.o graphics.o sound.o main.o fht.o intro.o scene.o outro.o
 CC = g++
 CFLAGS =-c -g -std=gnu++0x
 LFLAGS =
-LIBS =-lGLU -lglut -lasound -lGL -lvorbisfile
+LIBS =-lGLU -lglut -lasound -lGL -lvorbisfile -lpthread
 
 run: demo
 	./demo
